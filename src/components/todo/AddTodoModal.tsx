@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { addTodo } from "@/redux/features/todoSlice";
+import { useAppDispatch } from "@/redux/hook";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useState } from "react";
 
@@ -18,9 +20,11 @@ const AddTodoModal = () => {
     const [task,setTask]=useState('')
     const [description,setDescription]=useState('')
 
-   const onSubmit = (e)=>{
-    // e.preventDefault()
-    console.log({task,description});
+const dispatch = useAppDispatch()
+
+   const onSubmit = ()=>{
+    // console.log({task,description});
+    dispatch(addTodo({tittle:task,description:description}))
    }
     return (
         

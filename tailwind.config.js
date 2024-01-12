@@ -18,6 +18,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        "primary-start": "#3DC02C3",
+        "primary-middle": "#4F84CE", 
+       " primary-end": "#5C53FE",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -67,9 +70,13 @@ module.exports = {
           to: { height: "0" },
         },
       },
+      
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      backgroundImage: {
+        "primary-gradient": "linear-gradient(30deg, #3DC02C3, #5C53FE)"
       },
     },
   },

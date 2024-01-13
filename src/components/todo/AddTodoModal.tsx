@@ -17,50 +17,50 @@ import { useState } from "react";
 
 
 const AddTodoModal = () => {
-    const [task,setTask]=useState('')
-    const [description,setDescription]=useState('')
+  const [task, setTask] = useState('')
+  const [description, setDescription] = useState('')
 
-const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
 
-   const onSubmit = ()=>{
-    // console.log({task,description});
-    dispatch(addTodo({tittle:task,description:description}))
-   }
-    return (
-        
-        <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline">Add Todo</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Add Task</DialogTitle>
-            <DialogDescription>
-             Add Your Task That You Want To Finished.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="task" className="text-right">
-               Task
-              </Label>
-              <Input onBlur={(e)=>setTask(e.target.value)} id="task" placeholder="Pedro Duarte" className="col-span-3" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="description" className="text-right">
-                Description
-              </Label>
-              <Input onBlur={(e)=>setDescription(e.target.value)} id="description" placeholder="@peduarte" className="col-span-3" />
-            </div>
+  const onSubmit = () => {
+    const randomString = Math.random().toString(36).substring(2, 10)
+    dispatch(addTodo({ id: randomString, tittle: task, description: description }))
+  }
+  return (
+
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Add Todo</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Add Task</DialogTitle>
+          <DialogDescription>
+            Add Your Task That You Want To Finished.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="task" className="text-right">
+              Task
+            </Label>
+            <Input onBlur={(e) => setTask(e.target.value)} id="task" placeholder="Pedro Duarte" className="col-span-3" />
           </div>
-          <DialogFooter>
-            <DialogClose asChild>
-                <Button onClick={onSubmit} type="submit">Save changes</Button>
-                </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    );
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="description" className="text-right">
+              Description
+            </Label>
+            <Input onBlur={(e) => setDescription(e.target.value)} id="description" placeholder="@peduarte" className="col-span-3" />
+          </div>
+        </div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button onClick={onSubmit} type="submit">Save changes</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
 };
 
 export default AddTodoModal;

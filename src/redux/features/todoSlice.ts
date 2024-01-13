@@ -30,7 +30,7 @@ const todoSlice = createSlice({
             task!.isCompleted = !task?.isCompleted;
             const pendingData = state.todos.filter(todo=>todo.isCompleted===true).sort((a, b) => a.tittle.localeCompare(b.tittle))
             const completedData = state.todos.filter(todo=>todo.isCompleted===false).sort((a, b) => a.tittle.localeCompare(b.tittle))
-            state.todos = [...pendingData,...completedData]
+            state.todos = [...completedData,...pendingData]
         }
     }
 })

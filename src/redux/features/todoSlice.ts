@@ -27,7 +27,10 @@ const todoSlice = createSlice({
         },
         toggleComplete: (state, action: PayloadAction<string>) => {
             const task = state.todos.find(todo => todo.id === action.payload);
-            task!.isCompleted = !task?.isCompleted
+            task!.isCompleted = !task?.isCompleted;
+            const pendingData = state.todos.filter(todo=>todo.isCompleted===true).sort((a, b) => a.tittle.localeCompare(b.tittle))
+            const completedData = state.todos.filter(todo=>todo.isCompleted===false).sort((a, b) => a.tittle.localeCompare(b.tittle))
+            state.todos = [...pendingData,...completedData]
         }
     }
 })

@@ -1,12 +1,18 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 
-const baseApi = createApi({
-    reducerPath:"baseAPi",
-    baseQuery:fetchBaseQuery({baseUrl:"https://level2a2.vercel.app/api/users"}),
-    endpoints: (builder) => ({
-        getPokemonByName: builder.query<Pokemon, string>({
-          query: (name) => `pokemon/${name}`,
-        }),
-      }),
-})
+export const baseApi = createApi({
+  reducerPath: "baseApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "https://taskmaster-server.vercel.app/" }),
+  endpoints: (builder) => ({
+    getTodos: builder.query({
+      query: () => ({
+        url:"/tasks",
+        method:"GET"
+      })
+    }),
+  }),
+});
+
+export const {useGetTodosQuery}=baseApi
+

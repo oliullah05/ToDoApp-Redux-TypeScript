@@ -3,11 +3,11 @@ import { Button } from "../ui/button";
 import { deleteTodo, toggleComplete } from "@/redux/features/todoSlice";
 type TTodoCardProps = {
     id: string;
-    tittle: string;
+    title: string;
     description: string;
     isCompleted?: boolean
 }
-const TodoCard = ({ id, tittle, description, isCompleted }: TTodoCardProps) => {
+const TodoCard = ({ id, title, description, isCompleted }: TTodoCardProps) => {
     const dispatch = useAppDispatch()
 
 
@@ -26,7 +26,7 @@ const TodoCard = ({ id, tittle, description, isCompleted }: TTodoCardProps) => {
       </div>
 
 
-            <p className="font-semibold">{tittle}</p>
+            <p className="font-semibold">{title}</p>
 
             <p>{description}</p>
             <div className="space-x-4">

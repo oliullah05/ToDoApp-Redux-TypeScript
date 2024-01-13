@@ -4,7 +4,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type TTodo = {
     id: string,
-    tittle: string,
+    title: string,
     description: string,
     isCompleted?: boolean
 }
@@ -28,8 +28,8 @@ const todoSlice = createSlice({
         toggleComplete: (state, action: PayloadAction<string>) => {
             const task = state.todos.find(todo => todo.id === action.payload);
             task!.isCompleted = !task?.isCompleted;
-            const pendingData = state.todos.filter(todo=>todo.isCompleted===true).sort((a, b) => a.tittle.localeCompare(b.tittle))
-            const completedData = state.todos.filter(todo=>todo.isCompleted===false).sort((a, b) => a.tittle.localeCompare(b.tittle))
+            const pendingData = state.todos.filter(todo=>todo.isCompleted===true).sort((a, b) => a.title.localeCompare(b.title))
+            const completedData = state.todos.filter(todo=>todo.isCompleted===false).sort((a, b) => a.title.localeCompare(b.title))
             state.todos = [...completedData,...pendingData]
         }
     }

@@ -24,7 +24,7 @@ const AddTodoModal = () => {
 
   const onSubmit = () => {
     const randomString = Math.random().toString(36).substring(2, 10)
-    dispatch(addTodo({ id: randomString, tittle: task, description: description }))
+    dispatch(addTodo({ id: randomString, title: task, description: description }))
   }
   return (
 

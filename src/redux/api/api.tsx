@@ -15,6 +15,7 @@ export const baseApi = createApi({
     }),
     addTodos: builder.mutation({
       query: (data) => {
+        console.log("inside",data);
         return {
         url:"/tasks",
         method:"POST",

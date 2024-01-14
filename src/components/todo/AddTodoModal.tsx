@@ -8,6 +8,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAddTodosMutation } from "@/redux/api/api";
@@ -21,6 +30,7 @@ const AddTodoModal = () => {
   //for local state
   const [task, setTask] = useState('')
   const [description, setDescription] = useState('')
+  const [priority, setPriority] = useState('')
   // const dispatch = useAppDispatch()
 
   //for server
@@ -28,9 +38,16 @@ const AddTodoModal = () => {
   const [addTodo, { data, isError, isLoading, isSuccess }] = useAddTodosMutation();
   console.log({ data, isError, isLoading, isSuccess });
   const onSubmit = () => {
-    const randomString = Math.random().toString(36).substring(2, 10)
-    addTodo({id:randomString,
-      isCompleted: false, title: task, description: description,priority:"high" })
+    const randomString = Number(Math.random().toString().substring(2,4))
+    const taskDetails = {
+      id: randomString,
+      isCompleted: false,
+      title: task,
+      description,
+      priority
+    }
+    // console.log(taskDetails);
+    addTodo(taskDetails)
   }
   return (
 
@@ -48,15 +65,37 @@ const AddTodoModal = () => {
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="task" className="text-right">
-              Task
+              Title
             </Label>
             <Input onBlur={(e) => setTask(e.target.value)} id="task" placeholder="Pedro Duarte" className="col-span-3" />
           </div>
+
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="description" className="text-right">
               Description
             </Label>
             <Input onBlur={(e) => setDescription(e.target.value)} id="description" placeholder="@peduarte" className="col-span-3" />
+          </div>
+
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label className="text-right">
+              Priority
+
+            </Label>
+            <Select onValueChange={(value) => setPriority(value)}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select a Priority" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {/* <SelectLabel>Priority</SelectLabel> */}
+                  <SelectItem value="high">high</SelectItem>
+                  <SelectItem value="medium">medium</SelectItem>
+                  <SelectItem value="low">low</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+
           </div>
         </div>
         <DialogFooter>

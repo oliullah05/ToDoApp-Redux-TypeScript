@@ -10,7 +10,7 @@ type TTodoCardProps = {
 }
 const TodoCard = ({ id, title, description, isCompleted, priority }: TTodoCardProps) => {
     const dispatch = useAppDispatch()
-    console.log(priority);
+    // console.log(priority);
 
     const toggleState = () => {
         dispatch(toggleComplete(id))

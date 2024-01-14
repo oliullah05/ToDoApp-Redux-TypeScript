@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useAddTodosMutation } from "@/redux/api/api";
 import { addTodo } from "@/redux/features/todoSlice";
 import { useAppDispatch } from "@/redux/hook";
 import { DialogClose } from "@radix-ui/react-dialog";
@@ -17,14 +18,19 @@ import { useState } from "react";
 
 
 const AddTodoModal = () => {
+  //for local state
   const [task, setTask] = useState('')
   const [description, setDescription] = useState('')
+  // const dispatch = useAppDispatch()
 
-  const dispatch = useAppDispatch()
+  //for server
 
+  const [addTodo, { data, isError, isLoading, isSuccess }] = useAddTodosMutation();
+  console.log({ data, isError, isLoading, isSuccess });
   const onSubmit = () => {
     const randomString = Math.random().toString(36).substring(2, 10)
-    dispatch(addTodo({ id: randomString, title: task, description: description }))
+    addTodo({id:randomString,
+      isCompleted: false, title: task, description: description,priority:"high" })
   }
   return (
 

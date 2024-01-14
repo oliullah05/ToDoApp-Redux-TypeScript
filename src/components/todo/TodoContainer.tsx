@@ -1,7 +1,7 @@
 import AddTodoModal from "./AddTodoModal";
 import TodoCard from "./TodoCard";
 import TodoFilter from "./TodoFilter";
-import { useGetTodosQuery } from "@/redux/api/api";
+import {  useGetTodosQuery } from "@/redux/api/api";
 
 
 const TodoContainer = () => {
@@ -9,7 +9,7 @@ const TodoContainer = () => {
     // const {todos} = useAppSelector((state)=>state.todos)
 
     //from server
-    const { data: todos, isLoading } = useGetTodosQuery(undefined)
+    const { data: todos, isLoading } = useGetTodosQuery(undefined);
     if (isLoading) {
         return <div>Lodding....</div>
     }

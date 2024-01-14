@@ -1,7 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+*{
+  /* border: 1px solid red; */
+  /* background-color: aqua; */
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

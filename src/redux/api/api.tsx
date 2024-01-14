@@ -7,11 +7,12 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
   endpoints: (builder) => ({
     getTodos: builder.query({
-      query: () => {
+      query: (priority) => {
         
         return {
-        url:"/tasks",
-        method:"GET"
+        url:`/tasks`,
+        method:"GET",
+        params:{priority}
       }},
       providesTags:["todo"]
     }),

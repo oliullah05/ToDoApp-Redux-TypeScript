@@ -11,8 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import React from "react";
-const TodoFilter = () => {
-    const [position, setPosition] = React.useState("bottom")
+const TodoFilter = ({priority,setPriority}) => {
+
     return (
         <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -21,10 +21,10 @@ const TodoFilter = () => {
         <DropdownMenuContent className="w-56">
           <DropdownMenuLabel>Filter by priority</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-            <DropdownMenuRadioItem value="top">High</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="bottom">Medium</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="right">Low</DropdownMenuRadioItem>
+          <DropdownMenuRadioGroup value={priority} onValueChange={setPriority}>
+            <DropdownMenuRadioItem value="high">High</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="medium">Medium</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="low">Low</DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
         </DropdownMenuContent>
       </DropdownMenu>

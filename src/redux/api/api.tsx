@@ -8,11 +8,16 @@ export const baseApi = createApi({
   endpoints: (builder) => ({
     getTodos: builder.query({
       query: (priority) => {
-        
+        const params = new URLSearchParams()
+        console.log({params});
+        if(priority){
+          params.append("priority",priority)
+          console.log({params2:params});
+        }
         return {
         url:`/tasks`,
         method:"GET",
-        params:{priority}
+        params:params
       }},
       providesTags:["todo"]
     }),

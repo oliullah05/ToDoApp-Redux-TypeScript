@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
+  tagTypes:["todo"],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
   endpoints: (builder) => ({
     getTodos: builder.query({
@@ -11,7 +12,8 @@ export const baseApi = createApi({
         return {
         url:"/tasks",
         method:"GET"
-      }}
+      }},
+      providesTags:["todo"]
     }),
     addTodos: builder.mutation({
       query: (data) => {
@@ -20,8 +22,10 @@ export const baseApi = createApi({
         url:"/tasks",
         method:"POST",
         body:data
-      }}
+      }},
+      invalidatesTags:["todo"]
     }),
+
   }),
 });
 

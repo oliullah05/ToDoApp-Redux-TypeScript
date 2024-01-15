@@ -54,20 +54,26 @@ export const baseApi = createApi({
       },
       invalidatesTags: ["todo"]
     }),
-    // updateTodos: builder.mutation({
-    //   query: (data) => {
-    //     console.log(data, "back");
-    //     return {
-    //       url: `/tasks/${data.id}`,
-    //       method: "PUT",
-    //       body: data.data,
-    //     }
-    //   },
-    //   invalidatesTags: ["todo"]
-    // }),
+    updateTodos: builder.mutation({
+      query: (data) => {
+        console.log(data.id,55,data);
+        return {
+          url: `/tasks/${data.id}`,
+          method: "PUT",
+          body: data.data,
+        }
+      },
+      invalidatesTags: ["todo"]
+    }),
 
   }),
 });
 
-export const { useGetTodosQuery, useAddTodosMutation, useToggleTodosMutation,useDeleteTodosMutation } = baseApi
+export const { useGetTodosQuery,
+  useUpdateTodosMutation,
+  useAddTodosMutation,
+  useToggleTodosMutation,
+  useDeleteTodosMutation
+
+} = baseApi
 

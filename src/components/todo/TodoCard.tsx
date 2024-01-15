@@ -3,7 +3,7 @@ import { useDeleteTodosMutation, useToggleTodosMutation, useUpdateTodosMutation 
 import { Button } from "../ui/button";
 import UpdateTodoModal from "./updateTodoModal";
 
-type TTodoCardProps = {
+export type TTodoCardProps = {
     _id:string;
     id: string;
     title: string;

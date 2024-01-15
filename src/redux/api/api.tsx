@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const baseApi = createApi({
   reducerPath: "baseApi",
   tagTypes: ["todo"],
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://redux-todo-eight.vercel.app/" }),
   endpoints: (builder) => ({
     getTodos: builder.query({
       query: (priority) => {

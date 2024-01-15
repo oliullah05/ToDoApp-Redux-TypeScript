@@ -33,10 +33,10 @@ const AddTodoModal = () => {
 
   //for server
 
-  const [addTodo, { data, isError, isLoading, isSuccess }] = useAddTodosMutation();
+  const [addTodo] = useAddTodosMutation();
   // console.log({ data, isError, isLoading, isSuccess });
   const onSubmit = () => {
-    const randomString = Number(Math.random().toString().substring(2,4))
+    const randomString = Math.random().toString().substring(2,4)
     const taskDetails = {
       id: randomString,
       isCompleted: false,

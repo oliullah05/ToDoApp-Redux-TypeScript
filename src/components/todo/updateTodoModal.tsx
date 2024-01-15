@@ -21,32 +21,37 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useUpdateTodosMutation } from "@/redux/api/api";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { useState } from "react";
 import { TTodoCardProps } from "./TodoCard"
 
 
 const UpdateTodoModal = ({ _id, title, description: descriptionData, priority: priorityData }: TTodoCardProps) => {
     //for local state
-    const [task, setTask] = useState('')
-    const [description, setDescription] = useState('')
-    const [priority, setPriority] = useState('')
+    // const [task, setTask] = useState('')
+    // const [description, setDescription] = useState('')
+    // const [priority, setPriority] = useState('')
     // const dispatch = useAppDispatch()
 
     //for server
 
-    const [updateTodo, { data, isError, isLoading, isSuccess }] = useUpdateTodosMutation();
+    const [updateTodo] = useUpdateTodosMutation();
     // console.log({ data, isError, isLoading, isSuccess });
-    const onSubmit = () => {
+    const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const title = (e.target as HTMLFormElement).task.value;
+        const description = (e.target as HTMLFormElement).description.value;
+        const priority = (e.target as HTMLFormElement).priority.value;
+
         const updatedData = {
-            title: task,
-            description,
-            priority
+            title: title,
+            description:description,
+            priority:priority
         }
         const taskDetails = {
             id: _id,
             data: updatedData
 
         }
+        console.log({priority,priorityData});
         updateTodo(taskDetails)
     }
     return (
@@ -58,26 +63,26 @@ const UpdateTodoModal = ({ _id, title, description: descriptionData, priority: p
                 </svg>
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[700px]">
+            <DialogContent  className="sm:max-w-[700px]">
                 <DialogHeader>
                     <DialogTitle>Update Task</DialogTitle>
                     <DialogDescription>
                         Update Your Task That You Want To Finished.
                     </DialogDescription>
                 </DialogHeader>
-                <div className="grid gap-4 py-4">
+                <form onSubmit={onSubmit} className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="task" className="text-right">
                             Title
                         </Label>
-                        <Input onBlur={(e) => setTask(e.target.value)} id="task" defaultValue={title} placeholder="" className="col-span-3" />
+                        <Input  name="task" id="task" defaultValue={title}  className="col-span-3" />
                     </div>
 
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="description" className="text-right">
                             Description
                         </Label>
-                        <Input onBlur={(e) => setDescription(e.target.value)} defaultValue={descriptionData} id="description" placeholder="" className="col-span-3" />
+                        <Input defaultValue={descriptionData} name="description"  id="description" placeholder="" className="col-span-3" />
                     </div>
 
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -85,7 +90,7 @@ const UpdateTodoModal = ({ _id, title, description: descriptionData, priority: p
                             Priority
 
                         </Label>
-                        <Select defaultValue={priorityData} onValueChange={(value) => setPriority(value)}>
+                        <Select name="priority" defaultValue={priorityData} >
                             <SelectTrigger className="w-[180px]">
                                 <SelectValue placeholder="Select a Priority" />
                             </SelectTrigger>
@@ -100,12 +105,13 @@ const UpdateTodoModal = ({ _id, title, description: descriptionData, priority: p
                         </Select>
 
                     </div>
-                </div>
-                <DialogFooter>
+                    <DialogFooter>
                     <DialogClose asChild>
-                        <Button onClick={onSubmit} type="submit">Save changes</Button>
+                        <Button  type="submit">Save changes</Button>
                     </DialogClose>
                 </DialogFooter>
+                </form>
+              
             </DialogContent>
         </Dialog>
     );

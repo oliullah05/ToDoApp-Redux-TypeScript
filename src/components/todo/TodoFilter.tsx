@@ -10,8 +10,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
-const TodoFilter = ({priority,setPriority}) => {
+type TodoFilterProps ={
+  priority:string,
+  setPriority:React.Dispatch<React.SetStateAction<string>>
+}
+const TodoFilter = ({priority,setPriority}:TodoFilterProps) => {
 
     return (
         <DropdownMenu>

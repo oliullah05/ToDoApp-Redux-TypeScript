@@ -1,11 +1,11 @@
 
-import { useDeleteTodosMutation, useToggleTodosMutation, useUpdateTodosMutation } from "@/redux/api/api";
+import { useDeleteTodosMutation, useToggleTodosMutation } from "@/redux/api/api";
 import { Button } from "../ui/button";
 import UpdateTodoModal from "./updateTodoModal";
 
 export type TTodoCardProps = {
-    _id:string;
-    id: string;
+    _id?:string;
+    id?: string;
     title: string;
     description: string;
     isCompleted?: boolean,
@@ -22,7 +22,7 @@ const TodoCard = ({ _id, title, description, isCompleted, priority }: TTodoCardP
        toggleTodos({id:_id,data:taskData})
     }
 
-const handleDelete = (id:string)=>{
+const handleDelete = (id:string|undefined)=>{
     deleteTodos(id)
 }
 

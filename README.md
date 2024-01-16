@@ -4,4 +4,4 @@ This simple todo app with backend
 
 ## Live Link
 
-View this site -> [News-Portal](https://redux-typescript-todo.netlify.app/)
+View this site -> [ToDoApp-Redux](https://redux-typescript-todo.netlify.app/)
